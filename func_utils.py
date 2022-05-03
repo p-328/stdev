@@ -32,6 +32,13 @@ def calculateStdev(arr):
     return stdev
 
 
+def calculateMode(arr):
+    freqs = [arr.count(i) for i in inputs]
+    num_freqs = dict(zip(arr, freqs))
+    highest = [k for k, v in num_freqs.items() if v == max(freqs)]
+    return highest[0]
+
+
 def calculateMeanFromFreq(arr, freq):
     if len(arr) != len(freq):
         return -1
@@ -76,3 +83,9 @@ def calculateStdevFromFreq(arr, freq):
     for i in freq:
         divide += i
     return math.sqrt((summation/divide))
+
+
+def calculateModeFromFreq(arr, freq):
+    table = dict(zip(arr, freq))
+    highest = [key for key, value in table.items() if value == max(freq)]
+    return highest[0]

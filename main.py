@@ -24,8 +24,9 @@ def main():
             sys.exit(-1)
         print("Mean: {}".format(calculateMeanFromFreq(inputs, frequencies)))
         print("Median: {}".format(calculateMedianFromFreq(inputs, frequencies)))
-        print("Mode: {}".format(max(frequencies)))
+        print("Mode: {}".format(calculateModeFromFreq(inputs, frequencies)))
         print("Range: {}".format(max(inputs)-min(inputs)))
+        print("Stdev: {}".format(calculateStdevFromFreq(inputs, frequencies)))
     else:
         try:
             print("How many numbers do you have in your set?")
@@ -41,10 +42,7 @@ def main():
             sys.exit(-1)
         mean = mean(inputs)
         print("Mean: {}".format(mean))
-        freqs = [inputs.count(i) for i in inputs]
-        num_freqs = dict(zip(inputs, freqs))
-        highest = [k for k, v in num_freqs.items() if v == max(freqs)]
-        print("Mode: {}".format(highest[0]))
+        print("Mode: {}".format(calculateMode(inputs)))
         median = calculateMedian(inputs)
         print("Median: {}".format(median))
         print("Range: {}".format(max(inputs) - min(inputs)))
