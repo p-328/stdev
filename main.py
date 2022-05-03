@@ -2,8 +2,30 @@ import sys
 # import math
 from func_utils import *
 def main():
-    if sys.argv[1] == '-m':
-        pass
+    mode = input("Select mode:")
+    if mode == 'frequency table':
+        try:
+            print("How many numbers do you have in your set?")
+            length = int(input())
+        except ValueError:
+            print("Please enter a valid number")
+            sys.exit(-1)
+        try:
+            print("Enter nums: ")
+            inputs = [float(input()) for _ in range(length)]
+        except ValueError:
+            print("Please enter a valid number")
+            sys.exit(-1)
+        try:
+            print("Enter frequencies:")
+            frequencies = [int(input()) for _ in range(length)]
+        except ValueError:
+            print("Please enter a valid number")
+            sys.exit(-1)
+        print("Mean: {}".format(calculateMeanFromFreq(inputs, frequencies)))
+        print("Median: {}".format(calculateMedianFromFreq(inputs, frequencies)))
+        print("Mode: {}".format(max(frequencies)))
+        print("Range: {}".format(max(inputs)-min(inputs)))
     else:
         try:
             print("How many numbers do you have in your set?")
