@@ -35,7 +35,15 @@ def calculateStdev(arr):
 def calculateMeanFromFreq(arr, freq):
     if len(arr) != len(freq):
         return -1
-    
+    divide = 0
+    for i in freq:
+        divide+=i
+    mapped = zip(arr, freq)
+    freq_vals = [key * value for key, value in dict(mapped).items()]
+    conglomerate = 0
+    for i in freq_vals:
+        conglomerate += i
+    return conglomerate/divide
 
 
 def calculateMedianFromFreq(arr, freq):
