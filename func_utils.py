@@ -50,10 +50,29 @@ def calculateMedianFromFreq(arr, freq):
     arr.sort()
     if len(arr) != len(freq):
         return -1
-    
+    arr_freqs = []
+    for index, val in enumerate(freq):
+        for j in range(val):
+            arr_freqs.append(arr[index])
+    if len(arr_freqs) % 2 == 0:
+        sec1 = arr_freqs[:len(arr_freqs)/2]
+        sec2 = arr_freqs[len(arr_freqs)/2:]
+        return (sec1[len(sec1)-1]+sec2[len(sec2)-1])/2
+    else:
+        return (len(arr_freqs)-1)/2
 
 
 def calculateStdevFromFreq(arr, freq):
     arr.sort()
     if len(arr) != len(freq):
         return -1
+    distance_to_means = [(i - calculateMeanFromFreq(arr, freq))**2 for i in arr]
+    values_to_add = dict(zip(distance_to_means, freq))
+    calc = [key * value for key, value in values_to_add.items()]
+    summation = 0
+    for i in calc:
+        summation += i
+    divide = 0
+    for i in freq:
+        divide += i
+    return math.sqrt((summation/divide))
